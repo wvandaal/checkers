@@ -1,10 +1,15 @@
 # encoding: UTF-8
 
+# REV: When requiring files in the same directory, you can use require_relative.
+# In this case, you could just write require_relative 'piece'
 require 'colorize'
 require './piece.rb'
 
+# REV: Your board class looks good and clean. Smart to use the array setter method.
+
 class Board
 
+	# REV: Do you need BOARD_LENGTH? It looks like it's only used once (line 54)
 	BOARD_LENGTH = 8
 	BLANK_ROWS = [3, 4]
 
@@ -26,7 +31,8 @@ class Board
 		start, finish = move
 		piece = self[*start]
 		piece.position = finish
-		self.[*start] = nil
+		# REV: Had self.[*start] here, I just deleted the period
+		self[*start] = nil
 		self[*finish]= piece
 		
 		captured = nil

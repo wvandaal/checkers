@@ -33,6 +33,9 @@ class Piece
 	end
 
 	def jump_moves(moves, pos = @pos)
+		# REV: The following 2 lines are fairly complex to read since there are
+		# blocks including ternary operators within a ternary operator itself.
+		# Splitting the first ternary into multiple lines might make them easier to read.
 		jump_dirs = (@king ? JUMPS : JUMPS.select {|y, x| (@color == :red ? y > 0 : y < 0)})
 		slide_dirs = (@king ? SLIDES : SLIDES.select {|y, x| (@color == :red ? y > 0 : y < 0)})
 		jumps = jump_dirs.map! {|y, x| [y + pos[0], x + pos[1]]} # jump move positions
